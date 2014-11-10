@@ -24,13 +24,15 @@ class MyApp:
 		self.myParent = parent  
 		self.myContainer1 = Frame(parent)
 		self.myContainer1.pack()
+		self.myContainer2 = Frame(parent)
+		self.myContainer2.pack()
 		
 		self.button1 = Button(self.myContainer1)
 		self.button1.configure(text="Left", background= "green")
 		self.button1.grid(row=0,column=0)
 		
 		
-		self.button2 = Button(self.myContainer1)
+		self.button2 = Button(self.myContainer2)
 		self.button2.configure(text="right", background= "green")
 		self.button2.grid(row=0,column=1)
 	
@@ -51,8 +53,9 @@ class MyApp:
 		global drawpad
 		global drawpadwidth
 		global drawpadheight
-		drawpad.move(oval,-20,0)
-		x1,y1,x2,y2 = drawpads.coords(oval)
+		x1,y1,x2,y2 = drawpad.coords(oval)
+		if (x1>0):
+		    drawpad.move(oval,-20,0)
 	def button2Click(self, event):   
 		# Make the oval move to the left!
                 # "global" makes sure that we can access our oval and our drawpad
@@ -61,8 +64,9 @@ class MyApp:
 		global drawpad
 		global drawpadwidth
 		global drawpadheight
-		drawpad.move(oval,20,0)
-		x1,y1,x2,y2 = drawpads.coords(oval)
+		x1,y1,x2,y2 = drawpad.coords(oval)
+		if (x2<drawpadwidth):
+		    drawpad.move(oval,20,0)
 	# Add the button2Click method
 		
 myapp = MyApp(root)
